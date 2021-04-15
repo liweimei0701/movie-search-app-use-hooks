@@ -11,6 +11,11 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   
   const getMovies = async (searchValue) => {
+    if(searchValue.trim() === '') {
+      // setLoading(false);
+      setErrorMessage('please input the search word')
+      return
+    }
     const res = await axios.get(`https://www.omdbapi.com/?s=${searchValue}&apikey=4b954c0f`);
     // console.log(res);
     if (res.data.Response === "True") {
